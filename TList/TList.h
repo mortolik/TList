@@ -10,7 +10,7 @@ template <class T>
 class TList
 {
 protected:
-	TNode<T>* pFirst, * pLast, * pStop /*pointer at end of list(=0)*/, * pCurr, pPr;
+	TNode<T>* pFirst, * pLast, * pStop, * pCurr, pPr;
 	int pos, len;
 public:
 	TList() {
@@ -41,7 +41,7 @@ public:
 		pStop = nullptr;
 	}
 
-	void InsFirst(T _val) {
+	virtual void InsFirst(T _val) {
 		TNode<T>* tmp = new TNode<T>;
 		tmp->val = _val;
 		tmp->pNext = pFirst;
@@ -49,7 +49,7 @@ public:
 		len++;
 	}
 
-	void InsLast(T _val) {
+	virtual void InsLast(T _val) {
 		TNode<T>* tmp = new TNode<T>;
 		tmp->val = _val;
 		tmp->pNext = pStop;
@@ -58,7 +58,7 @@ public:
 		len++;
 	}
 
-	void InsCurr(T _val) {
+	virtual void InsCurr(T _val) {
 		if (pCurr == pFirst)
 			InsFirst(_val);
 		else {
@@ -90,7 +90,7 @@ public:
 		return (pStop == pCurr);
 	}
 
-	void DelFirst() {
+	virtual void DelFirst() {
 		if (pFirst != pStop) {
 			TNode<T>* tmp = pCurr;
 			pCurr = pCurr->pNext;
@@ -100,7 +100,7 @@ public:
 		}
 	}
 
-	void DelCurr() {
+	virtual void DelCurr() {
 		if (pCurr == pFirst)
 			DelFirst();
 		else {
